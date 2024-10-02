@@ -36,8 +36,7 @@ pipeline {
 
     post {
         always {
-            // Clean up workspace
-            cleanWs()
+            echo "image ${imageName} build and removed successfullly."
         }
     }
 }
