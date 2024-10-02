@@ -18,7 +18,7 @@ pipeline {
                 // Build the Docker image
                 script {
                     def imageName = 'testing' // Replace with your desired image name
-                    sh "docker build -t ${imageName} ."
+                    echo "docker build -t ${imageName} ."
                 }
             }
         }
