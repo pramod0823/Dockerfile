@@ -18,3 +18,5 @@ pipeline {
                 git url: 'git@github.com:pramod0823/Dockerfile.git', branch: 'main'
             }
         }
+    }
+}
