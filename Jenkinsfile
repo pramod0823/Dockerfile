@@ -36,7 +36,7 @@ pipeline {
 
     post {
         always {
-            echo "image ${imageName} build and removed successfullly."
+            echo "Done"
         }
     }
 }
