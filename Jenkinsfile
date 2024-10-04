@@ -17,7 +17,7 @@ pipeline {
             steps {
                 // Build the Docker image
                 script {
-                    def imageName = 'testing' // Replace with your desired image name
+                    def imageName = 'testing' 
                     echo "docker build -t ${imageName} ."
                 }
             }
@@ -26,9 +26,9 @@ pipeline {
         stage('Remove Docker Image') {
             steps {
                 script {
-                    def imageName = 'testing' // Ensure this matches the image name used above
+                    def imageName = 'testing' 
                     // Remove the Docker image
-                    sh "docker rmi ${imageName} || true" // '|| true' is used to ignore errors if the image doesn't exist
+                    sh "docker rmi ${imageName} || true" 
                 }
             }
         }
