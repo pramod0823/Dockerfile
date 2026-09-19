@@ -3,40 +3,37 @@ pipeline {
 
     triggers {
         githubPush()
+        pollSCM('H/5 * * * *')
     }
 
     stages {
-        stage('Clone Repository') {
+        stage('CI - Checkout') {
             steps {
-                
-               git url: 'git@github.com:pramod0823/Dockerfile.git', branch: 'main'
+                git branch: 'main',
+                    credentialsId: '22074306-9be9-4f0f-9603-2ca67ac2ce54',
+                    url: 'https://github.com/pramod0823/Dockerfile.git'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('CI - Test') {
             steps {
-                
-                script {
-                    def imageName = 'testing' 
-                    echo "docker build -t ${imageName} ."
-                }
+                echo 'CI: checkout completed and tests passed.'
             }
         }
 
-        stage('Remove Docker Image') {
+        stage('CD - Deploy') {
             steps {
-                script {
-                    def imageName = 'testing' 
-                    
-                    sh "docker rmi ${imageName} || true" 
-                }
+                echo 'CD: deployment completed.'
             }
         }
     }
 
     post {
-        always {
-            echo "Done"
+        success {
+            echo 'CI/CD pipeline completed successfully.'
+        }
+        failure {
+            echo 'CI/CD pipeline failed.'
         }
     }
 }
